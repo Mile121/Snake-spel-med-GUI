@@ -16,7 +16,7 @@ class Snake():
         self.key = "w"
         self.points = 0
 
-def move(self): 
+    def move(self): 
 
         for i in range(self.snakeLength - 1, 0, -1):
                 self.snakeX[i] = self.snakeX[i-1]
@@ -35,3 +35,29 @@ def move(self):
             self.snakeX[0] = self.snakeX[0] + 1
 
         self.eatApple()
+
+    def eatApple(self):
+
+        if self.snakeX[0] == apple.getAppleX() and self.snakeY[0] == apple.getAppleY():
+
+            self.snakeLength = self.snakeLength + 1
+
+            x = self.snakeX[len(self.snakeX)-1] 
+            y = self.snakeY[len(self.snakeY) - 1]
+            self.snakeX.append(x+1)
+            self.snakeY.append(y)
+
+            self.points = self.points + 1
+            apple.createNewApple()
+
+    def checkGameOver(self):
+
+        for i in range(1, self.snakeLength, 1):
+
+            if self.snakeY[0] == self.snakeY[i] and self.snakeX[0] == self.snakeX[i]:
+                return True 
+
+        if self.snakeX[0] < 1 or self.snakeX[0] >= boardWidth-1 or self.snakeY[0] < 1 or self.snakeY[0] >= boardHeight-1:
+            return True 
+
+        return False
