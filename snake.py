@@ -1,7 +1,6 @@
 from tkinter import *
 import random
 
-
 boardWidth = 30
 boardHeight = 30
 tilesize = 10
@@ -13,25 +12,25 @@ class Snake():
         self.snakeX = [20, 20, 20]
         self.snakeY = [20, 21, 22]
         self.snakeLength = 3
-        self.key = "w"
+        self.key = "Up"  # Initial direction is up
         self.points = 0
 
     def move(self): 
 
         for i in range(self.snakeLength - 1, 0, -1):
-                self.snakeX[i] = self.snakeX[i-1]
-                self.snakeY[i] = self.snakeY[i-1]
+            self.snakeX[i] = self.snakeX[i-1]
+            self.snakeY[i] = self.snakeY[i-1]
 
-        if self.key == "w":
+        if self.key == "Up":
             self.snakeY[0] = self.snakeY[0] - 1
 
-        elif self.key == "s":
+        elif self.key == "Down":
             self.snakeY[0] = self.snakeY[0] + 1
 
-        elif self.key == "a":
+        elif self.key == "Left":
             self.snakeX[0] = self.snakeX[0] - 1
 
-        elif self.key == "d":
+        elif self.key == "Right":
             self.snakeX[0] = self.snakeX[0] + 1
 
         self.eatApple()
@@ -64,8 +63,8 @@ class Snake():
 
     def getKey(self, event):
 
-        if event.char == "w" or event.char == "d" or event.char == "s" or event.char == "a" or event.char == " ":
-            self.key = event.char
+        if event.keysym in ["Up", "Down", "Left", "Right"]:
+            self.key = event.keysym
 
     def getSnakeX(self, index):
         return self.snakeX[index]
