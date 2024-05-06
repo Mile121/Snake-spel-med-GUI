@@ -12,7 +12,7 @@ class Snake():
         self.snakeX = [20, 20, 20]
         self.snakeY = [20, 21, 22]
         self.snakeLength = 3
-        self.key = "Up"  # Initial direction is up
+        self.key = "Up"  
         self.points = 0
 
     def move(self): 
